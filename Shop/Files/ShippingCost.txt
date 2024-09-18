@@ -1,0 +1,2 @@
+﻿Id, Type, Price
+1,Standard,30
