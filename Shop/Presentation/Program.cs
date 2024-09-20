@@ -1,5 +1,6 @@
 ﻿using Shop.Application;
 using Shop.Domain;
+using Shop.Entities;
 using Shop.Infrastructur;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,35 @@ namespace Shop.Presentation
                 Console.WriteLine($"Bought: [{items[choice-1].Id}] {items[choice-1].Description}");
             }
 
+            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("Would you like your order gift wrapped?");
+            Console.WriteLine("[1]: Yes!");
+            Console.WriteLine("[2]: No!");
+
+            int wrappingChoice = int.Parse(Console.ReadLine() ?? "2");
+            IItem giftWrapping = null;
+
+            if (wrappingChoice == 1)
+            {
+                giftWrapping = new GiftWrapping(items[choice-1]);
+            }
+            
+            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("Would you like your order shipped to your home address?");
+            Console.WriteLine("[1]: Yes!");
+            Console.WriteLine("[2]: No!");
+
+            int shipmentChoice = int.Parse(Console.ReadLine() ?? "2");
+            IItem shipment = null;
+
+            if (shipmentChoice == 1)
+            {
+                shipment = new Shipment(giftWrapping);
+            }
+
+            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine(shipment.getDesc());
+            Console.WriteLine(shipment.getPrice());
         }
     }
 }

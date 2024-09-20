@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Infrastructure\" />
     <Folder Include="InterfaceAdapter\" />
-    <Folder Include="Entities\" />
     <Folder Include="Application\" />
   </ItemGroup>
 
