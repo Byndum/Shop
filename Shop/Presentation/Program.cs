@@ -2,6 +2,7 @@
 using Shop.Domain;
 using Shop.Entities;
 using Shop.Infrastructur;
+using Shop.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace Shop.Presentation
         static void Main(string[] args)
         {
             Console.WriteLine("start");
+
+            ReceiptBuilder receiptBuilder = new ReceiptBuilder();
 
             // Testing123:
             Item u1 = new Item("g456","guldhalskæde",4580.50);
@@ -73,6 +76,12 @@ namespace Shop.Presentation
             Console.WriteLine("-----------------------------------------------------");
             Console.WriteLine(shipment.getDesc());
             Console.WriteLine(shipment.getPrice());
+
+            receiptBuilder.CreatePDF();
+            receiptBuilder.SetTitle("Jewlery Receipt");
+            receiptBuilder.AddPage();
+            receiptBuilder.AddItem(shipment.getDesc(), shipment.getPrice());
+            receiptBuilder.PrintReceipt();
         }
     }
 }
